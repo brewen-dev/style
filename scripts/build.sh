@@ -1,5 +1,11 @@
 ## Build and move all files to dist/
 
+SASS_PATH=$(which sass)
+if [ -z "$SASS_PATH" ]; then
+  # Try to resolve sass path in node_modules
+  SASS_PATH=$(find node_modules/.bin -name sass -type f)
+fi
+
 # Cleanup dist/ if it exists
 if [ -d dist ]; then
   rm -rf dist
@@ -7,10 +13,10 @@ if [ -d dist ]; then
 fi
 
 # Compile index.scss to dist/index.css
-sass --style=expanded src/index.scss dist/index.css
+$SASS_PATH --style=expanded src/index.scss dist/index.css
 echo "Built dist/index.css"
 # Generate minified version of index.css
-sass --style=compressed src/index.scss dist/index.min.css
+$SASS_PATH --style=compressed src/index.scss dist/index.min.css
 echo "Built dist/index.min.css"
 
 # Move all other .scss files in src/ to dist/, except index.scss
