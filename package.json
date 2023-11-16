@@ -1,12 +1,14 @@
 {
-  "name": "@brewen.dev/style",
+  "name": "@brewen-dev/style",
   "version": "1.0.0",
   "license": "GPL-3.0-or-later",
-  "repository": "https://github.com/brewen-dev/style.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brewen-dev/style.git"
+  },
   "scripts": {
     "build": ". ./scripts/build.sh"
   },
-  "dependencies": {},
   "devDependencies": {
     "sass": "~1.69.5"
   },
