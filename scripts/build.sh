@@ -19,7 +19,7 @@ mv dist/src/* dist && rm -rf dist/src
 echo "Moved all other .scss files in src/ to dist/"
 
 # Move other files to dist/
-cp package.json LICENSE README.md .npmrc dist
+cp package.json LICENSE README.md dist
 echo "Moved package.json, LICENSE and README.md to dist/"
 
 echo "Done!"
