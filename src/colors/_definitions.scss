@@ -1,0 +1,64 @@
+// Color names based from https://chir.ag/projects/name-that-color/
+
+$colors: (
+  // Gray swatches
+  white: #ffffff,
+  wildSand: #f5f5f5,
+  gallery: #e8e8e8,
+  linkWater: #e4eafa,
+  mystic: #e1e8ec,
+  botticelli: #d1d6e6,
+  ghost: #c6cbd3,
+  frenchGray: #c4c4c9,
+  santasGray: #a3a7b6,
+  waterloo: #83879a,
+  midGray: #616369,
+  comet: #555672,
+  scarpaFlow: #4a4b64,
+  gunPowder: #3a3b56,
+  mineShaft: #333333,
+  mirage: #1b1d36,
+  black: #000000,
+
+  // Blue swatches
+  anakiwa: #b0daff,
+  malibu: #79baff,
+  cornflowerBlue: #65a1f3,
+  curiousBlue: #1e7dd3,
+  denim: #0c71c4,
+  veniceBlue: #0c5594,
+  catalinaBlue: #0b467c,
+  deepSapphire: #083b6b,
+
+  // Green swatches
+  pixieGreen: #c9e0c0,
+  mossGreen: #afda9b,
+  laPalma: #3b8618,
+  dell: #306911,
+  greenHouse: #24570f,
+  darkFern: #1b410a,
+
+  // Red swatches
+  beautyBush: #f3c3c3,
+  roseBud: #f8abab,
+  cinnabar: #d92e2e,
+  mexicanRed: #b02222,
+  oldBrick: #941919,
+  darkTan: #6e0f0f,
+
+  // Yellow swatches
+  creamBrulee: #ffe6a6,
+  corvette: #fad298,
+  lightningYellow: #ffc818,
+  goldTips: #e8ba1d,
+  butteredRum: #9f7f11,
+  yukonGold: #7c6508,
+
+  // Pink swatches
+  cottonCandy: #ffb4da,
+  hotPink: #ff75be,
+  redViolet: #da0c81,
+  jazzberryJam: #a20861,
+  cardinalPink: #8d0655,
+  tyrianPurple: #6b033f
+);

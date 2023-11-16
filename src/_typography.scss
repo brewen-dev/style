@@ -1,0 +1,170 @@
+@import './variables';
+
+$weights: 'bold', 'normal', 'light';
+
+$headings: (
+  h1: (
+    bold: (
+      font: $font-h1-bold,
+      letter-spacing: $letter-spacing-h1-bold,
+    ),
+    normal: (
+      font: $font-h1-normal,
+      letter-spacing: $letter-spacing-h1-normal,
+    ),
+    light: (
+      font: $font-h1-light,
+      letter-spacing: $letter-spacing-h1-normal,
+    ),
+  ),
+  h2: (
+    bold: (
+      font: $font-h2-bold,
+      letter-spacing: $letter-spacing-h2-bold,
+    ),
+    normal: (
+      font: $font-h2-normal,
+      letter-spacing: $letter-spacing-h2-normal,
+    ),
+    light: (
+      font: $font-h2-light,
+      letter-spacing: $letter-spacing-h2-normal,
+    ),
+  ),
+  h3: (
+    bold: (
+      font: $font-h3-bold,
+      letter-spacing: $letter-spacing-h3-bold,
+    ),
+    normal: (
+      font: $font-h3-normal,
+      letter-spacing: $letter-spacing-h3-normal,
+    ),
+    light: (
+      font: $font-h3-light,
+      letter-spacing: $letter-spacing-h3-normal,
+    ),
+  ),
+  h4: (
+    bold: (
+      font: $font-h4-bold,
+      letter-spacing: $letter-spacing-h4-bold,
+    ),
+    normal: (
+      font: $font-h4-normal,
+      letter-spacing: $letter-spacing-h4-normal,
+    ),
+    light: (
+      font: $font-h4-light,
+      letter-spacing: $letter-spacing-h4-normal,
+    ),
+  ),
+  h5: (
+    bold: (
+      font: $font-h5-bold,
+      letter-spacing: $letter-spacing-h5-bold,
+    ),
+    normal: (
+      font: $font-h5-normal,
+      letter-spacing: $letter-spacing-h5-normal,
+    ),
+    light: (
+      font: $font-h5-light,
+      letter-spacing: $letter-spacing-h5-normal,
+    ),
+  ),
+  h6: (
+    bold: (
+      font: $font-h6-bold,
+      letter-spacing: $letter-spacing-h6-bold,
+    ),
+    normal: (
+      font: $font-h6-normal,
+      letter-spacing: $letter-spacing-h6-normal,
+    ),
+    light: (
+      font: $font-h6-light,
+      letter-spacing: $letter-spacing-h6-normal,
+    ),
+  ),
+);
+
+$texts: (
+  medium: (
+    bold: $font-medium-bold,
+    normal: $font-medium-normal,
+    light: $font-medium-light,
+  ),
+  small: (
+    bold: $font-small-bold,
+    normal: $font-small-normal,
+    light: $font-small-light,
+  ),
+);
+
+@mixin smoothing-text {
+  -webkit-font-smoothing: $font-smoothing-webkit;
+  -moz-osx-font-smoothing: $font-smoothing-moz;
+}
+
+@mixin heading($level, $weight) {
+  @if not map-has-key($headings, $level) {
+    @error "Invalid heading level '#{$level}', must be one of #{map-keys($headings)}";
+  } @else if not index($weights, $weight) {
+    @error "Invalid heading weight '#{$weight}', must be one of #{$weights}";
+  }
+
+  $font: map-get(map-get($headings, $level), $weight);
+
+  font: map-get($font, font);
+  letter-spacing: map-get($font, letter-spacing);
+  @include smoothing-text;
+}
+
+@mixin text($size, $weight) {
+  @if not map-has-key($texts, $size) {
+    @error "Invalid text size '#{$size}', must be one of #{map-keys($texts)}";
+  } @else if not index($weights, $weight) {
+    @error "Invalid text weight '#{$weight}', must be one of #{$weights}";
+  }
+
+  font: map-get(map-get($texts, $size), $weight);
+}
+
+@mixin base-font($font-variable) {
+  color: var(--primary-text-color);
+  @include smoothing-text;
+  font: $font-variable;
+}
+
+@mixin label-text {
+  @include smoothing-text;
+  @include text(small, normal);
+}
+
+@mixin font-caption {
+  @include smoothing-text;
+  @include text(small, normal);
+}
+
+@mixin font-input {
+  @include text(small, normal);
+}
+
+@mixin line-clamp($lines: 1le) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  white-space: initial; // doesn't work with white-space: no-wrap
+}
+
+@mixin heading-padding {
+  padding: 0 4px;
+}
+
+@mixin ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

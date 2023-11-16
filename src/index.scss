@@ -1,0 +1,35 @@
+@import 'colors';
+@import 'typography';
+
+body {
+  @include generateThemeVariables();
+
+  color: var(--primary-text-color);
+  background-color: var(--primary-background-color);
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+h1 {
+  @include heading(h1, bold);
+}
+h2 {
+  @include heading(h2, bold);
+}
+h3 {
+  @include heading(h3, bold);
+}
+h4 {
+  @include heading(h4, bold);
+}
+h5 {
+  @include heading(h5, bold);
+}
+h6 {
+  @include heading(h6, bold);
+}
+p {
+  font: $font-paragraph;
+}

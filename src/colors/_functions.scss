@@ -1,0 +1,16 @@
+@import './definitions';
+
+@function color($name) {
+  @return map-get($colors, $name);
+}
+
+@function themeExists($key, $theme) {
+  @if map-has-key($themeValues, $key) {
+    @return map-has-key(map-get($themeValues, $key), $theme);
+  }
+  @return null;
+}
+
+@function getThemeValue($key, $theme) {
+  @return map-get(map-get($themeValues, $key), $theme);
+}
