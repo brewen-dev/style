@@ -30,6 +30,7 @@ jobs:
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
+      - run: echo "$(pwd)/node_modules/.bin" >> $GITHUB_PATH
 
       - name: Bump version
         run: source ${{ github.workspace }}/scripts/bump.sh
