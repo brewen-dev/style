@@ -22,8 +22,8 @@ jobs:
 
       - name: Set git user
         run: |
-          git config --global user.name "CI"
-          git config --global user.email "deploy@brewen.dev"
+          git config --local user.name "CI"
+          git config --local user.email "deploy@brewen.dev"
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v1
@@ -32,23 +32,32 @@ jobs:
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
-      - run: echo "$(pwd)/node_modules/.bin" >> $GITHUB_PATH
+      - name: Add node_modules/.bin to PATH
+        run: echo "$(pwd)/node_modules/.bin" >> $GITHUB_PATH
 
       - name: Bump version
-        run: source ${{ github.workspace }}/scripts/bump.sh
+        run: . ${{ github.workspace }}/scripts/bump.sh
 
       - name: Build
         run: . ${{ github.workspace }}/scripts/build.sh
-      - run: cd ${{ github.workspace }}/dist
+      - name: Change directory to dist/
+        run: cd ${{ github.workspace }}/dist
 
       - name: Publish
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit, tag and push
+      - name: Commit and tag
         run: |
+          PKG_VERSION=$(node -p "require('./package.json').version")
           git add .
-          git commit -m "chore: release $PKG_VERSION"
+          git commit -m "chore: release $PKG_VERSION [skip ci]"
           git tag $PKG_VERSION
-          git push origin ${{ github.ref }} --follow-tags
+
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          tags: true

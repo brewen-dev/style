@@ -1,5 +1,6 @@
 {
   "name": "@brewen-dev/style",
+  "description": "Style for brewen-dev projects",
   "version": "1.0.0",
   "license": "GPL-3.0-or-later",
   "repository": {
