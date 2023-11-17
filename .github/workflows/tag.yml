@@ -13,10 +13,6 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '20.x'
-          registry-url: 'https://npm.pkg.github.com'
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v1
@@ -58,6 +54,7 @@ jobs:
         if: steps.release.outputs.changed != '0'
         run: |
           tar -czf style-$PKG_VERSION.tar.gz *
+          ls -la
           cd ..
           mv dist/style-$PKG_VERSION.tar.gz .
         env:
@@ -68,7 +65,7 @@ jobs:
         uses: ncipollo/release-action@v1.13.0
         with:
           artifacts: |
-            style-$PKG_VERSION.tar.gz
+            style-${{ env.PKG_VERSION }}.tar.gz
           token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: false
           draft: false
