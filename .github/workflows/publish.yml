@@ -28,7 +28,7 @@ jobs:
         run: echo "$(pwd)/node_modules/.bin" >> $GITHUB_PATH
 
       - name: Check if artifact exists
-        uses: brewcoua/artifact-exists@latest
+        uses: brewcoua/artifact-exists@v1.0.0
         with:
           name: style-${{ github.event.release.tag_name }}.tar.gz
 
