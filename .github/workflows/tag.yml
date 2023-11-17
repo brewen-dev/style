@@ -57,20 +57,20 @@ jobs:
         if: steps.release.outputs.changed != '0'
         run: |
           echo "PKG_VERSION=v$(node -p "require('./package.json').version")" >> $GITHUB_ENV
-          tar -czf style-${{ env.PKG_VERSION }}.tar.gz *
+          tar -czf style-$PKG_VERSION.tar.gz *
           cd ..
-          mv dist/style-${{ env.PKG_VERSION }}.tar.gz .
+          mv dist/style-$PKG_VERSION.tar.gz .
 
       - name: Create release
         if: steps.release.outputs.changed != '0'
         uses: ncipollo/release-action@v1.13.0
         with:
           artifacts: |
-            style-${{ env.PKG_VERSION }}.tar.gz
+            style-$PKG_VERSION.tar.gz
           token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: false
           draft: false
-          name: ${{ env.PKG_VERSION }}
-          tag: ${{ env.PKG_VERSION }}
+          name: $PKG_VERSION
+          tag: $PKG_VERSION
           commit: $(git rev-parse HEAD)
           bodyFile: CHANGELOG.md
