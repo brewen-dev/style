@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": ". ./scripts/build.sh",
-    "release": "standard-version"
+    "release": "bunx standard-version"
   },
   "devDependencies": {
     "sass": "~1.69.5",
