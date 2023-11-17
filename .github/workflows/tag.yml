@@ -28,6 +28,11 @@ jobs:
       - name: Add node_modules/.bin to PATH
         run: echo "$(pwd)/node_modules/.bin" >> $GITHUB_PATH
 
+      - name: Setup git user
+        run: |
+          git config --global user.name "Brewen.DEV/CI"
+          git config --global user.email "deploy@brewen.dev"
+
       - name: Release tag
         id: release
         run: |
