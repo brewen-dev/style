@@ -7,10 +7,10 @@ if [ -d dist ]; then
 fi
 
 # Compile index.scss to dist/index.css
-sass --style=expanded src/index.scss dist/index.css
+bunx sass --style=expanded src/index.scss dist/index.css
 echo "Built dist/index.css"
 # Generate minified version of index.css
-sass --style=compressed src/index.scss dist/index.min.css
+bunx sass --style=compressed src/index.scss dist/index.min.css
 echo "Built dist/index.min.css"
 
 # Move all other .scss files in src/ to dist/, except index.scss
