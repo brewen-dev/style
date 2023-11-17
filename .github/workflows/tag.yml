@@ -65,9 +65,9 @@ jobs:
           artifacts: |
             style-${{ env.PKG_VERSION }}.tar.gz
           token: ${{ secrets.GITHUB_TOKEN }}
-          prerelease: false
-          draft: false
           name: ${{ env.PKG_VERSION }}
           tag: ${{ env.PKG_VERSION }}
           commit: $(git rev-parse HEAD)
-          bodyFile: CHANGELOG.md
+          body: |
+            > ${{ env.PKG_VERSION }}
+            $(cat CHANGELOG.md)
