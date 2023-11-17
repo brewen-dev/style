@@ -2,7 +2,7 @@ name: Package
 
 on:
   release:
-    types: [published]
+    types: [created]
 
 jobs:
   publish:
@@ -27,15 +27,27 @@ jobs:
       - name: Add node_modules/.bin to PATH
         run: echo "$(pwd)/node_modules/.bin" >> $GITHUB_PATH
 
-      - name: Download release artifact
-        uses: actions/download-artifact@v2
+      - name: Check if artifact exists
+        uses: brewcoua/artifact-exists@v1
         with:
           name: style-${{ github.event.release.tag_name }}.tar.gz
 
+      - name: Download release artifact
+        if: env.ARTIFACT_EXISTS == 'true'
+        uses: actions/download-artifact@v2
+        with:
+          name: style-${{ github.event.release.tag_name }}.tar.gz
       - name: Unpack release artifact
+        if: env.ARTIFACT_EXISTS == 'true'
         run: |
           tar -xzf style-${{ github.event.release.tag_name }}.tar.gz -C dist
           rm style-${{ github.event.release.tag_name }}.tar.gz
+          cd dist
+
+      - name: Build
+        if: env.ARTIFACT_EXISTS != 'true'
+        run: |
+          bun run build
           cd dist
 
       - name: Publish
