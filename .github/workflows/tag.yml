@@ -57,7 +57,7 @@ jobs:
         uses: ncipollo/release-action@v1.13.0
         with:
           artifacts: "style-${{ env.PKG_VERSION }}.tar.gz"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.CI_TOKEN }}
           name: ${{ env.PKG_VERSION }}
           tag: ${{ env.PKG_VERSION }}
           bodyFile: "CHANGELOG.md"
