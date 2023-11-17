@@ -37,7 +37,7 @@ jobs:
         id: release
         run: |
           bun run release
-          echo "changed=$(git log origin/${{ github.ref }}..${{ github.ref }} --oneline | wc -l)" >> $GITHUB_OUTPUT
+          echo "changed=$(git log origin/master..master --oneline | wc -l)" >> $GITHUB_OUTPUT
 
       - name: Push
         if: steps.release.outputs.changed != '0'
