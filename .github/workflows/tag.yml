@@ -58,6 +58,10 @@ jobs:
         env:
           PKG_VERSION: ${{ env.PKG_VERSION }}
 
+      - name: Debug
+        if: steps.release.outputs.changed != '0'
+        run: ls -la
+
       - name: Create release
         if: steps.release.outputs.changed != '0'
         uses: ncipollo/release-action@v1.13.0
