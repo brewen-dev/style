@@ -46,17 +46,11 @@ jobs:
 
       - name: Build
         if: steps.release.outputs.changed != '0'
-        run: |
-          bun run build
-          cd dist
+        run: bun run build
 
       - name: Pack artifact
         if: steps.release.outputs.changed != '0'
-        run: |
-          tar -czf style-$PKG_VERSION.tar.gz * && mv style-$PKG_VERSION.tar.gz ../
-          cd ..
-        env:
-          PKG_VERSION: ${{ env.PKG_VERSION }}
+        run: tar -czf style-${{ env.PKG_VERSION }}.tar.gz dist/*
 
       - name: Debug
         if: steps.release.outputs.changed != '0'
