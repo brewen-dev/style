@@ -37,7 +37,7 @@ jobs:
         id: release
         run: |
           bun run release
-          echo ::set-output name=changed::$(git log origin/${{ github.ref }}..${{ github.ref }} --oneline | wc -l)
+          echo "changed=$(git log origin/${{ github.ref }}..${{ github.ref }} --oneline | wc -l)" >> $GITHUB_OUTPUT
 
       - name: Push
         if: steps.release.outputs.changed != '0'
@@ -54,7 +54,7 @@ jobs:
       - name: Pack artifact
         if: steps.release.outputs.changed != '0'
         run: |
-          echo ::set-env name=PKG_VERSION::v$(node -p "require('./package.json').version")
+          echo "PKG_VERSION=v$(node -p "require('./package.json').version")" >> $GITHUB_ENV
           tar -czf style-${{ env.PKG_VERSION }}.tar.gz dist
 
       - name: Create release
