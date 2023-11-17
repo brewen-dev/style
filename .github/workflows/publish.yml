@@ -2,10 +2,7 @@ name: Package
 
 on:
   release:
-    types: [created]
-  push:
-    branches:
-      - master
+    types: [published]
 
 jobs:
   publish:
@@ -20,11 +17,6 @@ jobs:
           node-version: '20.x'
           registry-url: 'https://npm.pkg.github.com'
 
-      - name: Set git user
-        run: |
-          git config --local user.name "CI"
-          git config --local user.email "deploy@brewen.dev"
-
       - name: Set up Bun
         uses: oven-sh/setup-bun@v1
         with:
@@ -35,29 +27,19 @@ jobs:
       - name: Add node_modules/.bin to PATH
         run: echo "$(pwd)/node_modules/.bin" >> $GITHUB_PATH
 
-      - name: Bump version
-        run: . ${{ github.workspace }}/scripts/bump.sh
+      - name: Download release artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: style-${{ github.event.release.tag_name }}.tar.gz
 
-      - name: Build
-        run: . ${{ github.workspace }}/scripts/build.sh
-      - name: Change directory to dist/
-        run: cd ${{ github.workspace }}/dist
+      - name: Unpack release artifact
+        run: |
+          tar -xzf style-${{ github.event.release.tag_name }}.tar.gz -C dist
+          rm style-${{ github.event.release.tag_name }}.tar.gz
+          cd dist
 
       - name: Publish
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit and tag
-        run: |
-          PKG_VERSION=$(node -p "require('./package.json').version")
-          git add .
-          git commit -m "chore: release $PKG_VERSION [skip ci]"
-          git tag $PKG_VERSION
-
-      - name: Push
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
-          tags: true

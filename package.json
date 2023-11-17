@@ -8,10 +8,12 @@
     "url": "git+https://github.com/brewen-dev/style.git"
   },
   "scripts": {
-    "build": ". ./scripts/build.sh"
+    "build": ". ./scripts/build.sh",
+    "release": "standard-version"
   },
   "devDependencies": {
-    "sass": "~1.69.5"
+    "sass": "~1.69.5",
+    "standard-version": "^9.5.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
