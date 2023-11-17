@@ -62,12 +62,8 @@ jobs:
         if: steps.release.outputs.changed != '0'
         uses: ncipollo/release-action@v1.13.0
         with:
-          artifacts: |
-            style-${{ env.PKG_VERSION }}.tar.gz
+          artifacts: "style-${{ env.PKG_VERSION }}.tar.gz"
           token: ${{ secrets.GITHUB_TOKEN }}
           name: ${{ env.PKG_VERSION }}
           tag: ${{ env.PKG_VERSION }}
-          commit: $(git rev-parse HEAD)
-          body: |
-            > ${{ env.PKG_VERSION }}
-            $(cat CHANGELOG.md)
+          bodyFile: "CHANGELOG.md"
