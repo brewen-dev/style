@@ -50,11 +50,7 @@ jobs:
 
       - name: Pack artifact
         if: steps.release.outputs.changed != '0'
-        run: tar -czf style-${{ env.PKG_VERSION }}.tar.gz dist/*
-
-      - name: Debug
-        if: steps.release.outputs.changed != '0'
-        run: ls -la
+        run: tar -czvf style-${{ env.PKG_VERSION }}.tar.gz -C dist .
 
       - name: Create release
         if: steps.release.outputs.changed != '0'
