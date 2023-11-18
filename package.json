@@ -11,6 +11,7 @@
     "setup": "bun install && bunx husky install",
     "build": ". ./scripts/build.sh",
     "lint": "bunx stylelint 'src/**/*.scss'",
+    "commitlint": "bunx commitlint --edit",
     "release": "bunx standard-version"
   },
   "devDependencies": {
