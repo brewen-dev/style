@@ -8,12 +8,19 @@
     "url": "git+https://github.com/brewen-dev/style.git"
   },
   "scripts": {
+    "setup": "bun install && bunx husky install",
     "build": ". ./scripts/build.sh",
+    "lint": "bunx stylelint 'src/**/*.scss'",
     "release": "bunx standard-version"
   },
   "devDependencies": {
+    "@commitlint/cli": "^18.4.2",
+    "@commitlint/config-conventional": "^18.4.2",
+    "husky": "^8.0.3",
     "sass": "~1.69.5",
-    "standard-version": "^9.5.0"
+    "standard-version": "^9.5.0",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard-scss": "^11.1.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"

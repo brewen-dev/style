@@ -1,5 +1,6 @@
 @import '../functions';
 @import '../../variables';
+@import '../../functions/with-alpha';
 
 $light: (
   // Colors
@@ -40,16 +41,16 @@ $light: (
   text-color-on-inverted: color(white),
   text-color-on-primary: color(white),
   text-color-on-brand: color(white),
-  disabled-text-color: rgba(color(mineShaft), $disabled-component-opacity),
+  disabled-text-color: with-alpha(color(mineShaft), $disabled-component-opacity),
   placeholder-color: color(midGray),
   link-color: color(curiousBlue),
   // Border
   ui-border-color: color(frenchGray),
   layout-border-color: color(botticelli),
   // Content colors
-  color-snow_white: #ffffff,
+  color-snow_white: #fff,
   color-snow_white-hover: #f2f2f2,
-  color-snow_white-selected: #ffffff,
+  color-snow_white-selected: #fff,
   color-marble: #f8f8f8,
   color-marble-hover: #ebebeb,
   color-marble-selected: #fafafa,
@@ -65,9 +66,9 @@ $light: (
   color-american_gray: #808080,
   color-american_gray-hover: #69696a,
   color-american_gray-selected: #bfbfbf,
-  color-blackish: #333333,
-  color-blackish-hover: #222222,
-  color-blackish-selected: #999999,
+  color-blackish: #333,
+  color-blackish-hover: #222,
+  color-blackish-selected: #999,
   color-pecan: #563e3e,
   color-pecan-hover: #453232,
   color-pecan-selected: #ab9f9f,
@@ -110,7 +111,7 @@ $light: (
   color-winter: #9aadbd,
   color-winter-hover: #7b8895,
   color-winter-selected: #ccd6de,
-  color-chili_blue: #66ccff,
+  color-chili_blue: #6cf,
   color-chili_blue-hover: #569ec3,
   color-chili_blue-selected: #b2e5ff,
   color-aquamarine: #4eccc6,
@@ -143,7 +144,7 @@ $light: (
   color-sunset: #ff7575,
   color-sunset-hover: #c26163,
   color-sunset-selected: #ffbaba,
-  color-sunset-selected-with-opacity: rgba(255, 186, 186, 0.6),
+  color-sunset-selected-with-opacity: rgba(255 186 186 / 60%),
   color-dark_orange: #ff642e,
   color-dark_orange-hover: #c25531,
   color-dark_orange-selected: #ffb196,
@@ -177,7 +178,7 @@ $light: (
   color-done_green: #00c875,
   color-done_green-hover: #0f9b63,
   color-done_green-selected: #80e3ba,
-  color-done_green-selected-with-opacity: rgba(128, 227, 186, 0.6),
+  color-done_green-selected-with-opacity: rgba(128 227 186 / 60%),
   color-bright_green: #9cd326,
   color-bright_green-hover: #7ca32b,
   color-bright_green-selected: #cde992,

@@ -1,0 +1,27 @@
+@use "sass:math";
+
+// Add alpha channel to a HEX color
+// e.g. with-alpha(#000000, 50%) => #00000080
+@function with-alpha($color, $alpha) {
+  // Checking and replacing percentage with decimal
+  $has-unit: not math.is-unitless($alpha);
+  $unit: if($has-unit, math.unit($alpha), null);
+  @if $has-unit and $unit == "%" {
+    $alpha: math.div($alpha, 100%);
+  }
+
+  $is-valid: type-of($alpha) == 'number' and $alpha >= 0 and $alpha <= 1;
+  @if not $is-valid {
+    @error "Alpha channel must be a percentage or a number between 0 and 1.";
+  }
+
+  $hex-table: "0123456789ABCDEF";
+
+  $alpha: math.floor($alpha * 255);
+  $first-hex: math.floor(math.div($alpha, 16));
+  $second-hex: math.floor($alpha % 16);
+  $alpha-hex: str-slice($hex-table, $first-hex + 1, $first-hex + 1);
+  $alpha-hex: $alpha-hex + str-slice($hex-table, $second-hex + 1, $second-hex + 1);
+
+  @return $color + $alpha-hex;
+}

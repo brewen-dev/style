@@ -8,9 +8,20 @@ fi
 
 # Compile index.scss to dist/index.css
 bunx sass --style=expanded src/index.scss dist/index.css
+
+if [ $? -ne 0 ]; then
+  echo "Error: Failed to compile index.scss"
+  exit 1
+fi
 echo "Built dist/index.css"
+
 # Generate minified version of index.css
 bunx sass --style=compressed src/index.scss dist/index.min.css
+
+if [ $? -ne 0 ]; then
+  echo "Error: Failed to compile index.min.scss"
+  exit 1
+fi
 echo "Built dist/index.min.css"
 
 # Move all other .scss files in src/ to dist/, except index.scss
