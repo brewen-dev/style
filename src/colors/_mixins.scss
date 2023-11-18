@@ -1,15 +1,17 @@
+@use 'sass:map';
+@use 'sass:list';
 @import './functions';
 
-@mixin theme($property, $key, $inlineExtra: null, $postExtra: null) {
+@mixin theme($property, $key, $inline-extra: null, $post-extra: null) {
   @each $theme in $themes {
-    @if (themeExists($key, $theme)) {
-      $value: getThemeValue($key, $theme);
+    @if theme-exists($key, $theme) {
+      $value: get-theme-value($key, $theme);
 
       :global(.#{$theme}) & {
-        #{$property}: #{$inlineExtra} #{$value} #{$postExtra};
-        #{$property}: #{$inlineExtra}
-          var(--theme-#{$theme}-#{$key}, #{$value})
-          #{$postExtra};
+        #{$property}: #{$inline-extra} #{$value} #{$post-extra};
+        #{$property}: #{$inline-extra}
+        var(--theme-#{$theme}-#{$key}, #{$value})
+        #{$post-extra};
       }
     } @else {
       @error "Property '#{$key}' not found in theme '#{$theme}'";
@@ -17,32 +19,31 @@
   }
 }
 
-@mixin generateThemeMappings($themeName, $newThemeMap) {
-  $themes: append($themes, $themeName, $separator: comma) !global;
+@mixin generate-theme-mappings($theme-name, $new-theme-map) {
+  $themes: list.append($themes, $theme-name, $separator: comma) !global;
 
-  @each $key, $value in $newThemeMap {
-    @if not map-has-key($themeValues, $key) {
-      $themeValues: map-merge(
-        $themeValues,
+  @each $key, $value in $new-theme-map {
+    @if not map.has-key($theme-values, $key) {
+      $theme-values: map.merge($theme-values,
         (
           $key: (
-            $themeName: $value,
+            $theme-name: $value,
           ),
         )
       ) !global;
     } @else {
-      $existingKeyMap: map-get($themeValues, $key);
-      @if not map-get($existingKeyMap, $themeName) {
-        $newKeyMap: map-merge(
-          $existingKeyMap,
-          (
-            $themeName: $value,
-          )
+      $existing-key-map: map.get($theme-values, $key);
+
+      @if not map.get($existing-key-map, $theme-name) {
+        $new-key-map: map.merge(
+            $existing-key-map,
+            (
+              $theme-name: $value,
+            )
         );
-        $themeValues: map-merge(
-          $themeValues,
+        $theme-values: map.merge($theme-values,
           (
-            $key: $newKeyMap,
+            $key: $new-key-map,
           )
         ) !global;
       }
@@ -52,20 +53,20 @@
 
 $default-theme: light;
 
-@mixin generateThemeVariables {
+@mixin generate-theme-variables {
   @each $theme in $themes {
     &.#{$theme} {
-      @each $key, $val in $themeValues {
-        @if (themeExists($key, $theme)) {
-          --#{$key}: #{getThemeValue($key, $theme)};
+      @each $key, $val in $theme-values {
+        @if theme-exists($key, $theme) {
+          --#{$key}: #{get-theme-value($key, $theme)};
         }
       }
     }
   }
 
-  @each $key, $val in $themeValues {
-    @if (themeExists($key, $default-theme)) {
-      --#{$key}: #{getThemeValue($key, $default-theme)};
+  @each $key, $val in $theme-values {
+    @if theme-exists($key, $default-theme) {
+      --#{$key}: #{get-theme-value($key, $default-theme)};
     }
   }
 }

@@ -1,5 +1,6 @@
 @import '../functions';
 @import '../../variables';
+@import '../../functions/with-alpha';
 
 $dark: (
   // Colors
@@ -40,16 +41,16 @@ $dark: (
   text-color-on-inverted: color(mineShaft),
   text-color-on-primary: color(white),
   text-color-on-brand: color(white),
-  disabled-text-color: rgba(color(ghost), $disabled-component-opacity),
+  disabled-text-color: with-alpha(color(ghost), $disabled-component-opacity),
   placeholder-color: color(frenchGray),
   link-color: color(cornflowerBlue),
   // Border
   ui-border-color: color(waterloo),
   layout-border-color: color(scarpaFlow),
   // Content colors
-  color-snow_white: #ffffff,
+  color-snow_white: #fff,
   color-snow_white-hover: #f2f2f2,
-  color-snow_white-selected: #ffffff,
+  color-snow_white-selected: #fff,
   color-marble: #f8f8f8,
   color-marble-hover: #ebebeb,
   color-marble-selected: #fafafa,
@@ -62,11 +63,11 @@ $dark: (
   color-gainsboro: #e1e1e1,
   color-gainsboro-hover: #cfcfcf,
   color-gainsboro-selected: #ebebeb,
-  color-american_gray: #999999,
+  color-american_gray: #999,
   color-american_gray-hover: #69696a,
   color-american_gray-selected: #4e505e,
   color-blackish: #5c5c5c,
-  color-blackish-hover: #222222,
+  color-blackish-hover: #222,
   color-blackish-selected: #272937,
   color-pecan: #786565,
   color-pecan-hover: #605151,
@@ -143,7 +144,7 @@ $dark: (
   color-sunset: #ff9191,
   color-sunset-hover: #c26163,
   color-sunset-selected: #8d4a58,
-  color-sunset-selected-with-opacity: rgba(141, 74, 88, 0.6),
+  color-sunset-selected-with-opacity: rgba(141 74 88 / 60%),
   color-dark_orange: #ff7b4d,
   color-dark_orange-hover: #c25531,
   color-dark_orange-selected: #8d4134,
@@ -177,7 +178,7 @@ $dark: (
   color-done_green: #33d391,
   color-done_green-hover: #0f9b63,
   color-done_green-selected: #0e7358,
-  color-done_green-selected-with-opacity: rgba(14, 115, 88, 0.6),
+  color-done_green-selected-with-opacity: rgba(14 115 88 / 60%),
   color-bright_green: #b0dc51,
   color-bright_green-hover: #7ca32b,
   color-bright_green-selected: #5c7930,

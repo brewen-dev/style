@@ -1,7 +1,7 @@
+@use 'sass:map';
 @import './variables';
 
 $weights: 'bold', 'normal', 'light';
-
 $headings: (
   h1: (
     bold: (
@@ -88,7 +88,6 @@ $headings: (
     ),
   ),
 );
-
 $texts: (
   medium: (
     bold: $font-medium-bold,
@@ -108,33 +107,35 @@ $texts: (
 }
 
 @mixin heading($level, $weight) {
-  @if not map-has-key($headings, $level) {
+  @if not map.has-key($headings, $level) {
     @error "Invalid heading level '#{$level}', must be one of #{map-keys($headings)}";
   } @else if not index($weights, $weight) {
     @error "Invalid heading weight '#{$weight}', must be one of #{$weights}";
   }
 
-  $font: map-get(map-get($headings, $level), $weight);
+  $font: map.get(map.get($headings, $level), $weight);
 
-  font: map-get($font, font);
-  letter-spacing: map-get($font, letter-spacing);
+  font: map.get($font, font);
+  letter-spacing: map.get($font, letter-spacing);
+
   @include smoothing-text;
 }
 
 @mixin text($size, $weight) {
-  @if not map-has-key($texts, $size) {
+  @if not map.has-key($texts, $size) {
     @error "Invalid text size '#{$size}', must be one of #{map-keys($texts)}";
   } @else if not index($weights, $weight) {
     @error "Invalid text weight '#{$weight}', must be one of #{$weights}";
   }
 
-  font: map-get(map-get($texts, $size), $weight);
+  font: map.get(map.get($texts, $size), $weight);
 }
 
 @mixin base-font($font-variable) {
   color: var(--primary-text-color);
-  @include smoothing-text;
   font: $font-variable;
+
+  @include smoothing-text;
 }
 
 @mixin label-text {

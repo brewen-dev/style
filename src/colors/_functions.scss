@@ -4,13 +4,14 @@
   @return map-get($colors, $name);
 }
 
-@function themeExists($key, $theme) {
-  @if map-has-key($themeValues, $key) {
-    @return map-has-key(map-get($themeValues, $key), $theme);
+@function theme-exists($key, $theme) {
+  @if map-has-key($theme-values, $key) {
+    @return map-has-key(map-get($theme-values, $key), $theme);
   }
+
   @return null;
 }
 
-@function getThemeValue($key, $theme) {
-  @return map-get(map-get($themeValues, $key), $theme);
+@function get-theme-value($key, $theme) {
+  @return map-get(map-get($theme-values, $key), $theme);
 }

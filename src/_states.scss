@@ -1,7 +1,6 @@
 @mixin disabled {
   border-color: var(--disabled-background-color);
   color: var(--disabled-text-color);
-
   cursor: not-allowed;
 
   &:hover {
@@ -94,7 +93,7 @@
     0 0 0 1px var(--text-color-on-primary) inset;
 }
 
-@mixin _scrollerThumb($color) {
+@mixin scroller-thumb($color) {
   &::-webkit-scrollbar-thumb {
     background-color: $color;
     border-radius: 4px;
@@ -107,6 +106,6 @@
     height: $height;
   }
 
-  @include _scrollerThumb($color);
+  @include scroller-thumb($color);
 }
 

@@ -1,10 +1,9 @@
 @import './colors/mixins';
+@import './colors/themes/light';
+@import './colors/themes/dark';
 
 $themes: ();
-$themeValues: ();
+$theme-values: ();
 
-@import './colors/themes/light';
-@include generateThemeMappings(light, $light);
-
-@import './colors/themes/dark';
-@include generateThemeMappings(dark, $dark);
+@include generate-theme-mappings(light, $light);
+@include generate-theme-mappings(dark, $dark);
