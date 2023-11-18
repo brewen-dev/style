@@ -41,15 +41,11 @@ jobs:
       # Release
       - name: Determine if release is needed
         id: release_needed
-        run: |
-          LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
-          CHANGES=$(git diff --name-only $LATEST_TAG..HEAD | wc -l)
-          echo "indeed=$(test $CHANGES != '0' && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+        run: echo "needed=$(. ./scripts/release_needed.sh)" >> $GITHUB_OUTPUT
 
       - name: Release tag
-        if: ${{ steps.release_needed.outputs.indeed == 'true' }}
-        run: |
-          bun run release -- --sign --no-verify
+        if: steps.release_needed.outputs.needed == 'true'
+        run: bun run release -- --sign --no-verify
 
       - name: Set env vars
         id: release
