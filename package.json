@@ -9,14 +9,18 @@
   },
   "scripts": {
     "setup": "bun install && bunx husky install",
+    "release": "bunx standard-version",
+    "commit": "cz",
+
     "build": ". ./scripts/build.sh",
     "lint": "bunx stylelint 'src/**/*.scss'",
-    "commitlint": "bunx commitlint --edit",
-    "release": "bunx standard-version"
+    "commitlint": "bunx commitlint --edit"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.2",
     "@commitlint/config-conventional": "^18.4.2",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "husky": "^8.0.3",
     "sass": "~1.69.5",
     "standard-version": "^9.5.0",
@@ -25,5 +29,10 @@
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
