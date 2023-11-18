@@ -76,7 +76,7 @@ jobs:
       - name: Generate changelog
         if: steps.release.outputs.changed != '0'
         id: changelog
-        run: CHANGELOG=$(. ./scripts/release-changelog.sh) && echo "changelog=$CHANGELOG" >> $GITHUB_OUTPUT
+        run: CHANGELOG=$(. ./scripts/release_changelog.sh) && echo "changelog=$CHANGELOG" >> $GITHUB_OUTPUT
 
       - name: Create release
         if: steps.release.outputs.changed != '0'
