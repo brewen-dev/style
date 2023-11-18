@@ -73,6 +73,11 @@ jobs:
         if: steps.release.outputs.changed != '0'
         run: cd dist && tar -czvf ../style-${{ env.PKG_VERSION }}.tar.gz * && cd ..
 
+      - name: Generate changelog
+        if: steps.release.outputs.changed != '0'
+        id: changelog
+        run: CHANGELOG=$(. ./scripts/release-changelog.sh) && echo "changelog=$CHANGELOG" >> $GITHUB_OUTPUT
+
       - name: Create release
         if: steps.release.outputs.changed != '0'
         uses: ncipollo/release-action@v1.13.0
@@ -81,4 +86,4 @@ jobs:
           token: ${{ secrets.CI_TOKEN }}
           name: ${{ env.PKG_VERSION }}
           tag: ${{ env.PKG_VERSION }}
-          body: $(. ./scripts/release-changelog.sh)
+          body: ${{ steps.changelog.outputs.changelog }}
