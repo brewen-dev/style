@@ -12,27 +12,35 @@ jobs:
     permissions:
       contents: write
     steps:
+      # Git Setup
       - uses: actions/checkout@v4
+      - name: Import GPG
+        uses: crazy-max/ghaction-import-gpg@v6.0.0
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+      - name: Setup git user
+        run: |
+          git config --global user.name "Brewen.DEV / CI"
+          git config --global user.email "deploy@brewen.dev"
 
+      # Environment Setup
       - name: Set up Bun
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
-
       - name: Install dependencies
         run: bun install --frozen-lockfile
       - name: Add node_modules/.bin to PATH
         run: echo "$(pwd)/node_modules/.bin" >> $GITHUB_PATH
 
-      - name: Setup git user
-        run: |
-          git config --global user.name "Brewen.DEV/CI"
-          git config --global user.email "deploy@brewen.dev"
-
+      # Release
       - name: Release tag
         id: release
         run: |
-          bun run release
+          bun run release -- --sign --no-verify
           echo "changed=$(git log origin/master..master --oneline | wc -l)" >> $GITHUB_OUTPUT
           echo "PKG_VERSION=v$(node -p "require('./package.json').version")" >> $GITHUB_ENV
 
