@@ -28,7 +28,7 @@ jobs:
         run: echo "$(pwd)/node_modules/.bin" >> $GITHUB_PATH
 
       - name: Check if artifact exists
-        uses: brewcoua/artifact-exists@v1.1.1
+        uses: brewcoua/artifact-exists@v1.1.2
         with:
           name: style-${{ github.event.release.tag_name }}.tar.gz
 
@@ -40,17 +40,16 @@ jobs:
       - name: Unpack release artifact
         if: env.ARTIFACT_EXISTS == 'true'
         run: |
+          mkdir -p dist
           tar -xzf style-${{ github.event.release.tag_name }}.tar.gz -C dist
           rm style-${{ github.event.release.tag_name }}.tar.gz
-          cd dist
 
       - name: Build
         if: env.ARTIFACT_EXISTS != 'true'
-        run: |
-          bun run build
-          cd dist
+        run: bun run build
 
       - name: Publish
+        working-directory: dist
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
