@@ -1,7 +1,7 @@
 {
   "name": "@brewen-dev/style",
   "description": "Style for brewen-dev projects",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
@@ -12,7 +12,6 @@
     "release": "bunx standard-version",
     "publish": "npm publish",
     "commit": "cz",
-
     "build": ". ./scripts/build.sh",
     "lint": "bunx stylelint 'src/**/*.scss'",
     "commitlint": "bunx commitlint --edit"
