@@ -6,7 +6,7 @@ on:
 
 jobs:
   publish:
-    uses: brewen-dev/workflows/publish.yml@master
+    uses: brewen-dev/workflows/.github/workflows/publish.yml@master
     with:
       release_tag: ${{ github.event.release.tag_name }}
     secrets: inherit
