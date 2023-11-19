@@ -74,6 +74,8 @@ jobs:
   release:
     name: Release
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    permissions:
+      contents: write
     uses: brewen-dev/workflows/.github/workflows/release.yml@master
     with:
       sign: true

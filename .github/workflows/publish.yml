@@ -6,6 +6,10 @@ on:
 
 jobs:
   publish:
+    name: Publish
+    permissions:
+      packages: write
+      actions: read
     uses: brewen-dev/workflows/.github/workflows/publish.yml@master
     with:
       release_tag: ${{ github.event.release.tag_name }}
