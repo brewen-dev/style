@@ -73,6 +73,7 @@ jobs:
 
   release:
     name: Release
+    needs: [build, stylelint, commitlint]
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     permissions:
       contents: write
