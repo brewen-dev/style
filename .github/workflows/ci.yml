@@ -71,3 +71,10 @@ jobs:
       - name: Build
         run: bun run build
 
+  release:
+    name: Release
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    uses: brewen-dev/workflows/release.yml@master
+    with:
+      sign: true
+    secrets: inherit

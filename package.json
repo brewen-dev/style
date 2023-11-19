@@ -10,6 +10,7 @@
   "scripts": {
     "setup": "bun install && bunx husky install",
     "release": "bunx standard-version",
+    "publish": "npm publish",
     "commit": "cz",
 
     "build": ". ./scripts/build.sh",
