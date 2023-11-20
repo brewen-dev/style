@@ -4,11 +4,36 @@ It uses [Sass](https://sass-lang.com/) to provide a set of variables and mixins 
 It is mainly used for color and layout management, but also provides some other useful variables and mixins. It also includes some assets, such as fonts, icons, images and other shared resources.
 
 ## Installation
-To install the library, you first need to simply follow the instructions on the [GitHub Packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#installing-a-package)
-page on how to set up your project to use the GitHub Packages registry, with the scope `@brewen-dev`.
-Then, you can install the library using the following command:
+To install the library, you first need to authenticate to the GitHub package registry. You can find more information about this [here](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages). <br />
+To do so, you will need a GitHub account and a personal access token with the `read:packages` scope. (No matter if the package is public or private, you will need this scope to install it.) <br />
+Then, you can install the library using whatever package manager you use.
+### npm
+First, login to the GitHub package registry using npm.
+```bash
+npm login --scope=@brewen-dev --auth-type=legacy --registry=https://npm.pkg.github.com
+
+> Username: USERNAME
+> Password: TOKEN
+```
+Then, add the following to a `.npmrc` file in your project root.
+```
+@brewen-dev:registry=https://npm.pkg.github.com
+```
+Finally, you can install the library using npm.
 ```bash
 npm install @brewen-dev/style
+```
+### bun
+You only need to add the following to a `bunfig.toml` file in your project root.
+```toml
+[install.scopes]
+"@brewen-dev" = { username = "USERNAME", password = "TOKEN", registry = "https://npm.pkg.github.com" }
+```
+Then, you can install the library using bun.
+```bash
+bun add @brewen-dev/style
+# or
+bun install @brewen-dev/style # if you do not want to update package.json and bun.lockb
 ```
 
 ## Usage
