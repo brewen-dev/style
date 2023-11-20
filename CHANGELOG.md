@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.5](https://github.com/brewen-dev/style/compare/v1.0.4...v1.0.5) (2023-11-20)
+
+
+### Bug Fixes
+
+* **index:** paragraph global style with font smoothing ([844a116](https://github.com/brewen-dev/style/commit/844a1160fd4a2a9a3d3da1ec2c5aa98403981b20))
+
 ### [1.0.4](https://github.com/brewen-dev/style/compare/v1.0.3...v1.0.4) (2023-11-19)
 
 ### [1.0.3](https://github.com/brewen-dev/style/compare/v1.0.2...v1.0.3) (2023-11-18)
