@@ -29,6 +29,7 @@ You only need to add the following to a `bunfig.toml` file in your project root.
 [install.scopes]
 "@brewen-dev" = { username = "USERNAME", password = "TOKEN", registry = "https://npm.pkg.github.com" }
 ```
+(You can also declare a variable in a `.env` file and use it in the `bunfig.toml` file.) <br />
 Then, you can install the library using bun.
 ```bash
 bun add @brewen-dev/style
