@@ -5,32 +5,22 @@ It is mainly used for color and layout management, but also provides some other 
 
 ## Installation
 To install the library, you first need to authenticate to the GitHub package registry. You can find more information about this [here](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages). <br />
-To do so, you will need a GitHub account and a personal access token with the `read:packages` scope. (No matter if the package is public or private, you will need this scope to install it.) <br />
-Then, you can install the library using whatever package manager you use.
-### npm
-First, login to the GitHub package registry using npm.
-```bash
-npm login --scope=@brewen-dev --auth-type=legacy --registry=https://npm.pkg.github.com
-
-> Username: USERNAME
-> Password: TOKEN
-```
-Then, add the following to a `.npmrc` file in your project root.
-```
-@brewen-dev:registry=https://npm.pkg.github.com
-```
-Finally, you can install the library using npm.
-```bash
-npm install @brewen-dev/style
-```
-### bun
-You only need to add the following to a `bunfig.toml` file in your project root.
+I will only cover installation for [Bun](https://bun.sh) here.
+1. First, create or edit the `bunfig.toml` file in your project with the following content:
 ```toml
 [install.scopes]
 "@brewen-dev" = { username = "USERNAME", password = "TOKEN", registry = "https://npm.pkg.github.com" }
 ```
-(You can also declare a variable in a `.env` file and use it in the `bunfig.toml` file.) <br />
-Then, you can install the library using bun.
+While replacing `USERNAME` with your GitHub username and `TOKEN` with a [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) with the `read:packages` scope.
+
+> [!TIP]
+> You may want to use environment variables instead of hardcoding your username and token in the `bunfig.toml` file. <br />
+> To do so, you only need to add a `.env` file in your project with your variables and replace the `USERNAME` and `TOKEN` values in the `bunfig.toml` file with the corresponding environment variables. (e.g. `username = "$USERNAME"`)
+
+> [!WARNING]
+> As of right now (2023-11-21), fine-grained access tokens are not supported for GitHub packages. (see the issue [here](https://github.com/github/roadmap/issues/558))
+
+2. Then, you can install the library using bun.
 ```bash
 bun add @brewen-dev/style
 # or
