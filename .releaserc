@@ -21,7 +21,7 @@
     [
       "@semantic-release/exec",
       {
-        prepareCmd: "cd dist && zip -qq -r style-${nextRelease.version}.zip ./* && cd .. && mv dist/style-${nextRelease.version}.zip ."
+        prepareCmd: "cd dist && zip -qq -r ../style-${nextRelease.version}.zip *"
       }
     ],
     [
@@ -29,7 +29,7 @@
       {
         assets: [
           {
-            path: "style-${nextRelease.version}.zip",
+            path: "style-*.zip",
             label: "Style ${nextRelease.version}"
           }
         ]
