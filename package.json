@@ -9,21 +9,20 @@
   },
   "scripts": {
     "setup": "bun install && bunx husky install",
-    "release": "bunx standard-version",
-    "publish": "npm publish",
-    "commit": "cz",
+    "release": "bun x standard-version",
     "build": ". ./scripts/build.sh",
-    "lint": "bunx stylelint 'src/**/*.scss'",
-    "commitlint": "bunx commitlint --edit"
+    "lint": "bun x stylelint 'src/**/*.scss'",
+    "commitlint": "bun x commitlint --edit"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.2",
     "@commitlint/config-conventional": "^18.4.2",
-    "commitizen": "^4.3.0",
-    "cz-conventional-changelog": "^3.3.0",
-    "husky": "^8.0.3",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "conventional-changelog-conventionalcommits": "^7.0.2",
     "sass": "~1.69.5",
-    "standard-version": "^9.5.0",
+    "semantic-release": "^22.0.8",
     "stylelint": "^15.11.0",
     "stylelint-config-standard-scss": "^11.1.0"
   },
