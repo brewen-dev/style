@@ -1,27 +1,26 @@
 'use strict';
 module.exports = function(grunt) {
-  // Run 2 tasks concurrently for building minified and unminified sass
   grunt.initConfig({
     concurrent: {
-      all: ['sass:expanded', 'sass:minified', 'copy:main'],
+      all: ['sass:expanded', 'sass:minified', 'copy:main']
     },
     sass: {
       expanded: {
         options: {
-          style: 'expanded',
+          style: 'expanded'
         },
         files: {
-          'dist/index.css': 'src/index.scss',
-        },
+          'dist/index.css': 'src/index.scss'
+        }
       },
       minified: {
         options: {
-          style: 'compressed',
+          style: 'compressed'
         },
         files: {
-          'dist/index.min.css': 'src/index.scss',
-        },
-      },
+          'dist/index.min.css': 'src/index.scss'
+        }
+      }
     },
     copy: {
       main: {
@@ -30,6 +29,14 @@ module.exports = function(grunt) {
             expand: true,
             cwd: 'src/',
             src: ['**/_*.scss'],
+            dest: 'dist/'
+          },
+          {
+            src: [
+              'package.json',
+              'README.md',
+              'LICENSE'
+            ],
             dest: 'dist/'
           }
         ]
