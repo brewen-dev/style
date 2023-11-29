@@ -10,7 +10,7 @@
   "scripts": {
     "setup": "bun install && bunx husky install",
     "release": "bun x standard-version",
-    "build": ". ./scripts/build.sh",
+    "build": "bun x grunt build",
     "lint": "bun x stylelint 'src/**/*.scss'",
     "commitlint": "bun x commitlint --edit"
   },
@@ -21,6 +21,11 @@
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "conventional-changelog-conventionalcommits": "^7.0.2",
+    "grunt": "^1.6.1",
+    "grunt-concurrent": "^3.0.0",
+    "grunt-contrib-clean": "^2.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-sass": "^2.0.0",
     "sass": "~1.69.5",
     "semantic-release": "^22.0.8",
     "stylelint": "^15.11.0",
