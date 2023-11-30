@@ -30,7 +30,7 @@
         assets: [
           {
             path: "style-*.zip",
-            label: "Style ${nextRelease.version}"
+            label: "@brewen-dev/style ${nextRelease.version}"
           }
         ]
       }
