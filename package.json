@@ -8,7 +8,6 @@
     "url": "git+https://github.com/brewen-dev/style.git"
   },
   "scripts": {
-    "setup": "bun install && bunx husky install",
     "release": "bun x standard-version",
     "build": "bun x grunt build",
     "lint": "bun x stylelint 'src/**/*.scss'",
