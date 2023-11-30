@@ -9,17 +9,29 @@ module.exports = function(grunt) {
         options: {
           style: 'expanded'
         },
-        files: {
-          'dist/index.css': 'src/index.scss'
-        }
+        files: [
+          {
+            expand: true,
+            cwd: 'src/',
+            src: ['**/*.scss'],
+            dest: 'dist/',
+            ext: '.css'
+          }
+        ]
       },
       minified: {
         options: {
           style: 'compressed'
         },
-        files: {
-          'dist/index.min.css': 'src/index.scss'
-        }
+        files: [
+          {
+            expand: true,
+            cwd: 'src/',
+            src: ['**/*.scss'],
+            dest: 'dist/',
+            ext: '.min.css'
+          }
+        ]
       }
     },
     copy: {
