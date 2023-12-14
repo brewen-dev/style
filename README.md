@@ -23,7 +23,6 @@ While replacing `USERNAME` with your GitHub username and `TOKEN` with a [persona
 2. Then, you can install the library using bun.
 ```bash
 bun add @brewen-dev/style
-# or
 bun install @brewen-dev/style # if you do not want to update package.json and bun.lockb
 ```
 
